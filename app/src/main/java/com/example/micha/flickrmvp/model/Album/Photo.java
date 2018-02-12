@@ -1,10 +1,10 @@
 
-package com.example.micha.flickrmvp.model;
+package com.example.micha.flickrmvp.model.Album;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Photolist {
+public class Photo {
 
     @SerializedName("id")
     @Expose

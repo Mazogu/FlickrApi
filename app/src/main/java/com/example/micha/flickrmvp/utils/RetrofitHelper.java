@@ -2,7 +2,8 @@ package com.example.micha.flickrmvp.utils;
 
 
 
-import com.example.micha.flickrmvp.model.Album;
+import com.example.micha.flickrmvp.model.Album.Album;
+import com.example.micha.flickrmvp.model.Picture.Picture;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -24,6 +25,11 @@ public class RetrofitHelper {
                     .addConverterFactory(GsonConverterFactory.create()).baseUrl(url).build();
         }
 
+        public static Retrofit getTestRetrofit(String url){
+            return new Retrofit.Builder().addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                    .addConverterFactory(ScalarsConverterFactory.create()).baseUrl(url).build();
+        }
+
     }
 
     public static Observable<Album> getPhotoList(String url, String key, String user){
@@ -31,16 +37,16 @@ public class RetrofitHelper {
         return service.getPhotoList(key,user);
     }
 
-    public static Observable<String> getPhoto(String url,String key, String photoId){
+    public static Observable<Picture> getPhoto(String url, String key, String photoId){
         RetroFitService service = Factory.getRetrofit(url).create(RetroFitService.class);
         return service.getPhoto(key, photoId);
     }
 
     public interface RetroFitService{
-        @GET("rest/?method=flickr.people.getPublicPhotos&per_page=100&format=json&nojsoncallback=1")
+        @GET("rest/?method=flickr.people.getPublicPhotos&per_page=21&format=json&nojsoncallback=1")
         Observable<Album> getPhotoList(@Query("api_key") String key, @Query("user_id") String user);
 
-        @GET("rest/?method=flickr.photos.getInfo&api_key={key}&photo_id={photo_id}&format=json")
-        Observable<String> getPhoto(@Path("key") String key, @Path("photo_id") String photoId);
+        @GET("rest/?method=flickr.photos.getInfo&format=json&nojsoncallback=1")
+        Observable<Picture> getPhoto(@Query("api_key") String key, @Query("photo_id") String photoId);
     }
 }

@@ -1,5 +1,5 @@
 
-package com.example.micha.flickrmvp.model;
+package com.example.micha.flickrmvp.model.Album;
 
 import java.util.List;
 import com.google.gson.annotations.Expose;
@@ -19,9 +19,9 @@ public class Photos {
     @SerializedName("total")
     @Expose
     private String total;
-    @SerializedName("photolist")
+    @SerializedName("photo")
     @Expose
-    private List<Photolist> photolist = null;
+    private List<Photo> photo = null;
 
     public Integer getPage() {
         return page;
@@ -55,12 +55,12 @@ public class Photos {
         this.total = total;
     }
 
-    public List<Photolist> getPhotolist() {
-        return photolist;
+    public List<Photo> getPhoto() {
+        return photo;
     }
 
-    public void setPhotolist(List<Photolist> photolist) {
-        this.photolist = photolist;
+    public void setPhoto(List<Photo> photo) {
+        this.photo = photo;
     }
 
 }

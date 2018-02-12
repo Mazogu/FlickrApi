@@ -1,24 +1,24 @@
 
-package com.example.micha.flickrmvp.model;
+package com.example.micha.flickrmvp.model.Picture;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Album {
+public class Picture {
 
-    @SerializedName("photos")
+    @SerializedName("photo")
     @Expose
-    private Photos photos;
+    private Photo photo;
     @SerializedName("stat")
     @Expose
     private String stat;
 
-    public Photos getPhotos() {
-        return photos;
+    public Photo getPhoto() {
+        return photo;
     }
 
-    public void setPhotos(Photos photos) {
-        this.photos = photos;
+    public void setPhoto(Photo photo) {
+        this.photo = photo;
     }
 
     public String getStat() {

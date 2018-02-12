@@ -8,4 +8,15 @@ import com.example.micha.flickrmvp.BaseView;
 
 public class DetailPresenter implements DetailContract.DPresenter {
 
+    DetailContract.DView view;
+
+    @Override
+    public void attachView(DetailContract.DView view) {
+        this.view = view;
+    }
+
+    @Override
+    public void detachView() {
+        view = null;
+    }
 }
