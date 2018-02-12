@@ -1,6 +1,7 @@
 package com.example.micha.flickrmvp.utils;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -11,6 +12,7 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.example.micha.flickrmvp.R;
+import com.example.micha.flickrmvp.detail.DetailActivity;
 import com.example.micha.flickrmvp.model.Picture.Photo;
 import com.example.micha.flickrmvp.model.SimplePhoto;
 
@@ -38,9 +40,22 @@ public class PhotoAdapter extends RecyclerView.Adapter<PhotoAdapter.PhotoHolder>
     }
 
     @Override
-    public void onBindViewHolder(PhotoHolder holder, int position) {
+    public void onBindViewHolder(PhotoHolder holder, final int position) {
         Glide.with(context).load(list.get(position).getUrl()).into(holder.image);
         holder.text.setText(list.get(position).getTitle());
+        holder.image.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context.getApplicationContext(), DetailActivity.class);
+                intent.setAction("Detail");
+                intent.putExtra("title",list.get(position).getTitle());
+                intent.putExtra("description",list.get(position).getDescription());
+                intent.putExtra("owner",list.get(position).getOwner());
+                intent.putExtra("date",list.get(position).getDate());
+                intent.putExtra("url",list.get(position).getUrl());
+                context.startActivity(intent);
+            }
+        });
     }
 
     @Override

@@ -13,6 +13,6 @@ public interface DetailContract {
     }
 
     public interface DPresenter extends BasePresenter<DView> {
-
+        String getDate(String iDate);
     }
 }
