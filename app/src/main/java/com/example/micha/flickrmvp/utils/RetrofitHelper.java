@@ -4,6 +4,7 @@ package com.example.micha.flickrmvp.utils;
 
 import com.example.micha.flickrmvp.model.Album.Album;
 import com.example.micha.flickrmvp.model.Picture.Picture;
+import com.example.micha.flickrmvp.model.sizes.PictureSizes;
 
 import io.reactivex.Observable;
 import retrofit2.Retrofit;
@@ -42,11 +43,19 @@ public class RetrofitHelper {
         return service.getPhoto(key, photoId);
     }
 
+    public static Observable<PictureSizes> getUrl(String url, String key, String photoId){
+        RetroFitService service = Factory.getRetrofit(url).create(RetroFitService.class);
+        return service.getUrl(key, photoId);
+    }
+
     public interface RetroFitService{
         @GET("rest/?method=flickr.people.getPublicPhotos&per_page=21&format=json&nojsoncallback=1")
         Observable<Album> getPhotoList(@Query("api_key") String key, @Query("user_id") String user);
 
         @GET("rest/?method=flickr.photos.getInfo&format=json&nojsoncallback=1")
         Observable<Picture> getPhoto(@Query("api_key") String key, @Query("photo_id") String photoId);
+
+        @GET("rest/?method=flickr.photos.getSizes&format=json&nojsoncallback=1")
+        Observable<PictureSizes> getUrl(@Query("api_key") String key, @Query("photo_id") String photoId);
     }
 }

@@ -78,4 +78,14 @@ public class DataBaseHelper extends SQLiteOpenHelper {
         db.close();
         return photos;
     }
+
+    public void updateUrl(String id, String url) {
+        SQLiteDatabase db = getWritableDatabase();
+        ContentValues values = new ContentValues();
+        values.put(DatabaseContract.Picture.PICTURE_URL,url);
+        db.update(DatabaseContract.Picture.TABLE_NAME, values,
+                DatabaseContract.Picture.PICTURE_ID + " = '"+id+"'",
+                null);
+        db.close();
+    }
 }

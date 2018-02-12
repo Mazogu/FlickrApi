@@ -11,6 +11,7 @@ import com.example.micha.flickrmvp.main.MainPresenter;
 import com.example.micha.flickrmvp.model.Album.Album;
 import com.example.micha.flickrmvp.model.Album.Photo;
 import com.example.micha.flickrmvp.model.Picture.Picture;
+import com.example.micha.flickrmvp.model.sizes.PictureSizes;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -72,7 +73,7 @@ public class FlickrService extends Service {
         });
     }
 
-    private void sendIds(List<String> ids) {
+    private void sendIds(final List<String> ids) {
 
         final List<Picture> pictures = new ArrayList<>();
         final int num = ids.size();
@@ -91,6 +92,7 @@ public class FlickrService extends Service {
                     pictures.add(picture);
                     if(pictures.size() == num){
                         presenter.addToDatabase(pictures);
+                        updateUrls(ids);
                     }
 
                 }
@@ -105,8 +107,38 @@ public class FlickrService extends Service {
                 }
             });
         }
+    }
 
+    public void updateUrls(final List<String> ids){
+        for (final String id : ids) {
+            RetrofitHelper.getUrl(getString(R.string.base_url),getString(R.string.flickr_key),id)
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribeOn(Schedulers.io())
+                    .subscribe(new Observer<PictureSizes>() {
+                        @Override
+                        public void onSubscribe(Disposable d) {
 
+                        }
+
+                        @Override
+                        public void onNext(PictureSizes sizes) {
+                            presenter.updateUrl(id,sizes.getSizes().getSize().get(0).getSource());
+                            if(id.equals(ids.get(ids.size()-1))){
+                                presenter.complete();
+                            }
+                        }
+
+                        @Override
+                        public void onError(Throwable e) {
+                            e.printStackTrace();
+                        }
+
+                        @Override
+                        public void onComplete() {
+
+                        }
+                    });
+        }
     }
 
     public class FlickrBinder extends Binder{

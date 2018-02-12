@@ -5,6 +5,7 @@ import android.util.Log;
 
 import com.example.micha.flickrmvp.BasePresenter;
 import com.example.micha.flickrmvp.model.Picture.Picture;
+import com.example.micha.flickrmvp.model.SimplePhoto;
 import com.example.micha.flickrmvp.utils.DataBaseHelper;
 import com.example.micha.flickrmvp.utils.FlickrService;
 
@@ -40,5 +41,16 @@ public class MainPresenter implements MainContract.MPresenter {
     public void addToDatabase(List<Picture> pictures) {
         DataBaseHelper data = new DataBaseHelper((Context) view);
         data.addPictures(pictures);
+    }
+
+    public void updateUrl(String id, String url){
+        DataBaseHelper database = new DataBaseHelper((Context) view);
+        database.updateUrl(id,url);
+    }
+
+    public void complete(){
+        DataBaseHelper database = new DataBaseHelper((Context) view);
+        List<SimplePhoto> list = database.getAllphotos();
+        view.setPhotoList(list);
     }
 }
