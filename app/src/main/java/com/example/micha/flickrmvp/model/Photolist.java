@@ -4,32 +4,35 @@ package com.example.micha.flickrmvp.model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PhotoMini {
+public class Photolist {
 
-    @SerializedName("-id")
+    @SerializedName("id")
     @Expose
     private String id;
-    @SerializedName("-owner")
+    @SerializedName("owner")
     @Expose
     private String owner;
-    @SerializedName("-secret")
+    @SerializedName("secret")
     @Expose
     private String secret;
-    @SerializedName("-server")
+    @SerializedName("server")
     @Expose
     private String server;
-    @SerializedName("-title")
+    @SerializedName("farm")
+    @Expose
+    private Integer farm;
+    @SerializedName("title")
     @Expose
     private String title;
-    @SerializedName("-ispublic")
+    @SerializedName("ispublic")
     @Expose
-    private String ispublic;
-    @SerializedName("-isfriend")
+    private Integer ispublic;
+    @SerializedName("isfriend")
     @Expose
-    private String isfriend;
-    @SerializedName("-isfamily")
+    private Integer isfriend;
+    @SerializedName("isfamily")
     @Expose
-    private String isfamily;
+    private Integer isfamily;
 
     public String getId() {
         return id;
@@ -63,6 +66,14 @@ public class PhotoMini {
         this.server = server;
     }
 
+    public Integer getFarm() {
+        return farm;
+    }
+
+    public void setFarm(Integer farm) {
+        this.farm = farm;
+    }
+
     public String getTitle() {
         return title;
     }
@@ -71,27 +82,27 @@ public class PhotoMini {
         this.title = title;
     }
 
-    public String getIspublic() {
+    public Integer getIspublic() {
         return ispublic;
     }
 
-    public void setIspublic(String ispublic) {
+    public void setIspublic(Integer ispublic) {
         this.ispublic = ispublic;
     }
 
-    public String getIsfriend() {
+    public Integer getIsfriend() {
         return isfriend;
     }
 
-    public void setIsfriend(String isfriend) {
+    public void setIsfriend(Integer isfriend) {
         this.isfriend = isfriend;
     }
 
-    public String getIsfamily() {
+    public Integer getIsfamily() {
         return isfamily;
     }
 
-    public void setIsfamily(String isfamily) {
+    public void setIsfamily(Integer isfamily) {
         this.isfamily = isfamily;
     }
 

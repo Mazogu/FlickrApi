@@ -7,43 +7,43 @@ import com.google.gson.annotations.SerializedName;
 
 public class Photos {
 
-    @SerializedName("-page")
+    @SerializedName("page")
     @Expose
-    private String page;
-    @SerializedName("-pages")
+    private Integer page;
+    @SerializedName("pages")
     @Expose
-    private String pages;
-    @SerializedName("-perpage")
+    private Integer pages;
+    @SerializedName("perpage")
     @Expose
-    private String perpage;
-    @SerializedName("-total")
+    private Integer perpage;
+    @SerializedName("total")
     @Expose
     private String total;
-    @SerializedName("photoMini")
+    @SerializedName("photolist")
     @Expose
-    private List<PhotoMini> photoMini = null;
+    private List<Photolist> photolist = null;
 
-    public String getPage() {
+    public Integer getPage() {
         return page;
     }
 
-    public void setPage(String page) {
+    public void setPage(Integer page) {
         this.page = page;
     }
 
-    public String getPages() {
+    public Integer getPages() {
         return pages;
     }
 
-    public void setPages(String pages) {
+    public void setPages(Integer pages) {
         this.pages = pages;
     }
 
-    public String getPerpage() {
+    public Integer getPerpage() {
         return perpage;
     }
 
-    public void setPerpage(String perpage) {
+    public void setPerpage(Integer perpage) {
         this.perpage = perpage;
     }
 
@@ -55,12 +55,12 @@ public class Photos {
         this.total = total;
     }
 
-    public List<PhotoMini> getPhotoMini() {
-        return photoMini;
+    public List<Photolist> getPhotolist() {
+        return photolist;
     }
 
-    public void setPhotoMini(List<PhotoMini> photoMini) {
-        this.photoMini = photoMini;
+    public void setPhotolist(List<Photolist> photolist) {
+        this.photolist = photolist;
     }
 
 }

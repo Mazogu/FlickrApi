@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FlickrMVP</string>
     <string name="base_url">https://api.flickr.com/services/</string>
+    <string name="andy">66376627@N03</string>
 </resources>
